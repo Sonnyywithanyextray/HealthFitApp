@@ -1,3 +1,5 @@
+package main;
+
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -13,12 +15,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import utilities.StdAudio;
 import javafx.geometry.Insets;
 import javafx.animation.ScaleTransition;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+
 
 public class App extends Application {
 
@@ -28,7 +32,7 @@ public class App extends Application {
     private static final double BUTTON_WIDTH = 200.0;
     private static final double BUTTON_HEIGHT = 40.0;
     private static final Color BUTTON_COLOR = Color.rgb(233, 30, 99);
-    private static final String MUSIC_FILE_PATH = "C:\\Users\\etels\\Desktop\\Health\\Healthapp\\src\\Clairedelune.wav";
+    private static final String MUSIC_FILE_PATH = "C:\\Users\\etels\\Documents\\GitHub\\HealthFitApp\\Healthapp\\src\\resources\\Clairedelune.wav";
 
     private StackPane root;
     private StackPane contentPane;
@@ -64,8 +68,7 @@ public class App extends Application {
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.getIcons().add(new Image("icon.png"));
-        primaryStage.show();
+        primaryStage.getIcons().add(new Image(getClass().getResource("/resources/icon.png").toString()));        primaryStage.show();
 
         primaryStage.setOnCloseRequest(event -> {
             StdAudio.stopInBackground();
@@ -73,7 +76,7 @@ public class App extends Application {
     }
 
     private ImageView createBackArrow() {
-        Image backArrowImage = new Image("backarrow.png");
+        Image backArrowImage = new Image(getClass().getResource("/resources/backarrow.png").toString());        
         ImageView backArrow = new ImageView(backArrowImage);
         backArrow.setFitWidth(50);
         backArrow.setFitHeight(50);
@@ -353,8 +356,8 @@ public class App extends Application {
 
     private StackPane createBackgroundPane(String imagePath) {
         StackPane pane = new StackPane();
-        Image backgroundImage = new Image(imagePath);
-        ImageView backgroundImageView = new ImageView(backgroundImage);
+        Image image = new Image(getClass().getResource("/resources/background.png").toString());
+        ImageView backgroundImageView = new ImageView(image);
         backgroundImageView.fitWidthProperty().bind(pane.widthProperty());
         backgroundImageView.fitHeightProperty().bind(pane.heightProperty());
         pane.getChildren().add(backgroundImageView);
@@ -418,7 +421,7 @@ public class App extends Application {
     
 
     private ImageView createQuestionMark() {
-        Image questionMarkImage = new Image("Questionmark.png");
+        Image questionMarkImage = new Image(getClass().getResource("/resources/Questionmark.png").toString());
         ImageView questionMark = new ImageView(questionMarkImage);
         questionMark.setFitWidth(18);
         questionMark.setFitHeight(18);
@@ -469,21 +472,21 @@ public class App extends Application {
             String bmiText;
         
             if (bmi < 18.5) {
-                backgroundImagePath = "underweight.png";
+                backgroundImagePath = "/resources/underweight.png";
                 bmiText = "You're underweight.";
             } else if (bmi <= 24.9) {  
-                backgroundImagePath = "normalweight.png";
+                backgroundImagePath = "/resources/normalweight.png";
                 bmiText = "You're in the normal weight range.";
             } else if (bmi <= 29.9) {  
-                backgroundImagePath = "overweight.png";
+                backgroundImagePath = "/resources/overweight.png";
                 bmiText = "You're overweight.";
             } else {
-                backgroundImagePath = "overweight.png";
+                backgroundImagePath = "/resources/overweight.png";
                 bmiText = "You're obese.";
             }
             
             // Set the background image
-            Image backgroundImage = new Image(backgroundImagePath);
+            Image backgroundImage = new Image(getClass().getResource(backgroundImagePath).toString());            
             if (backgroundImage.isError()) {
                 System.out.println("Failed to load image: " + backgroundImage.getException());
             }

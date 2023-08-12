@@ -1,11 +1,5 @@
-/******************************************************************************
- *  Compilation:  javac StdAudio.java
- *  Execution:    java StdAudio
- *  Dependencies: none
- *
- *  Simple library for reading, writing, and manipulating audio.
- *
- ******************************************************************************/
+package utilities;
+
 
 import javax.sound.sampled.Clip;
 
